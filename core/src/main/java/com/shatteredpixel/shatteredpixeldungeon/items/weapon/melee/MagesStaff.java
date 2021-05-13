@@ -286,7 +286,7 @@ public class MagesStaff extends MeleeWeapon {
 			int curCharges = wand.curCharges;
 			wand.level(level());
 			//gives the wand one additional max charge
-			wand.maxCharges = Math.min(wand.maxCharges + 1, 10);
+			wand.maxCharges = Math.min(wand.maxCharges + 1, Wand.MAX_CHARGES);
 			wand.curCharges = Math.min(curCharges + (levelled ? 1 : 0), wand.maxCharges);
 			updateQuickslot();
 		}
@@ -348,7 +348,7 @@ public class MagesStaff extends MeleeWeapon {
 		super.restoreFromBundle(bundle);
 		wand = (Wand) bundle.get(WAND);
 		if (wand != null) {
-			wand.maxCharges = Math.min(wand.maxCharges + 1, 10);
+			wand.maxCharges = Math.min(wand.maxCharges + 1, Wand.MAX_CHARGES);
 		}
 	}
 

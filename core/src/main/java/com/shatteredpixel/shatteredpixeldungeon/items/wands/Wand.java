@@ -61,6 +61,8 @@ import java.util.ArrayList;
 
 public abstract class Wand extends Item {
 
+	public static int MAX_CHARGES = 1000;
+
 	public static final String AC_ZAP	= "ZAP";
 
 	private static final float TIME_TO_ZAP	= 1f;
@@ -319,7 +321,7 @@ public abstract class Wand extends Item {
 	}
 
 	public void updateLevel() {
-		maxCharges = Math.min( initialCharges() + level(), 10 );
+		maxCharges = Math.min( initialCharges() + level(),  MAX_CHARGES);
 		curCharges = Math.min( curCharges, maxCharges );
 	}
 	
