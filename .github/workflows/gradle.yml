@@ -40,4 +40,4 @@ jobs:
           prerelease: true
           title: "Latest-Dev-Build"
           files: |
-                ~/shattered-pixel-dungeon/android/build/outputs/apk/debug/android-debug.apk
+                ./android/build/outputs/apk/debug/android-debug.apk
