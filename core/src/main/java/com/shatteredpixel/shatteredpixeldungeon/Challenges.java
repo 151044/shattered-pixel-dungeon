@@ -48,7 +48,7 @@ public class Challenges {
 			"swarm_intelligence",
 			"darkness",
 			"no_scrolls",
-			"debug"
+			"debug_mode"
 	};
 
 	public static final int[] MASKS = {
