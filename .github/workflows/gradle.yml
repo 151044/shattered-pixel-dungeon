@@ -1,0 +1,43 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Configure git
+      env: 
+        TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      run: | 
+          mkdir Android
+          cd Android
+          git clone https://${TOKEN}:x-oauth-basic@github.com/151044/android-key-store.git
+    - name: Build with Gradle
+      run: ./gradlew :android:assembleDebug 
+    - name: Create Release
+      id: create_release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest-dev-build"
+          prerelease: true
+          title: "Latest-Dev-Build"
+          files: |
+                ~/shattered-pixel-dungeon/android/build/outputs/apk/debug/android-debug.apk
