@@ -159,20 +159,22 @@ public enum HeroClass {
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
 		//
-		WandOfSnowstorm wand = new WandOfSnowstorm();
-		wand.identify();
-		wand.upgrade(30);
-		wand.collect();
-		new Debugger().collect();
-		new VelvetPouch().collect();
-		Dungeon.LimitedDrops.VELVET_POUCH.drop();
-		new PotionBandolier().collect();
-		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
-		new MagicalHolster().collect();
-		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
+		if(Dungeon.isChallenged(Challenges.DEBUG_MODE)) {
+			WandOfSnowstorm wand = new WandOfSnowstorm();
+			wand.identify();
+			wand.upgrade(30);
+			wand.collect();
+			new Debugger().collect();
+			new VelvetPouch().collect();
+			Dungeon.LimitedDrops.VELVET_POUCH.drop();
+			new PotionBandolier().collect();
+			Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
+			new MagicalHolster().collect();
+			Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
 
-		new RingOfWealth().identify().collect();
-		new MagesStaff(new WandOfFireblast()).identify().collect();
+			new RingOfWealth().identify().collect();
+			new MagesStaff(new WandOfFireblast()).identify().collect();
+		}
 	}
 
 	private static void initRogue( Hero hero ) {

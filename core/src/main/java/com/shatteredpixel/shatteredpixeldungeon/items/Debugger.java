@@ -7,6 +7,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Enchanting;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.PurpleParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -26,6 +27,7 @@ public class Debugger extends Item{
     private static final String AC_UP = "UPGRADE";
     private static final String AC_CHARGE = "RECHARGE";
     private static final String AC_NEXT = "NEXT";
+    private static final String AC_MAP = "MAP";
     {
         image = ItemSpriteSheet.BEACON;
 
@@ -41,6 +43,7 @@ public class Debugger extends Item{
         actions.add(AC_UP);
         actions.add(AC_CHARGE);
         actions.add(AC_NEXT);
+        actions.add(AC_MAP);
         return actions;
     }
 
@@ -51,22 +54,15 @@ public class Debugger extends Item{
 
         if (action.equals(AC_CHARGE)) {
             curUser = hero;
-            Iterator<Item> i = Dungeon.hero.belongings.iterator();
-            while(i.hasNext()){
-                Item item = i.next();
-                if(item instanceof MagesStaff){
-                    MagesStaff staff = (MagesStaff) item;
-                    staff.gainCharge(Wand.MAX_CHARGES,false);
-                }else if(item instanceof Wand){
-                    ((Wand) item).gainCharge(Wand.MAX_CHARGES,false);
-                }
-            }
+            Dungeon.hero.belongings.charge(1000);
         }else if(action.equals(AC_UP)) {
             curUser = hero;
             GameScene.selectItem(itemSelector, WndBag.Mode.UPGRADEABLE, Messages.get(this, "prompt"));
         }else if(action.equals(AC_NEXT)){
             InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
             Game.switchScene( InterlevelScene.class );
+        }else if(action.equals(AC_MAP)){
+            new ScrollOfMagicMapping().doRead();
         }
     }
 
