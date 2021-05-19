@@ -36,6 +36,8 @@ public class Debugger extends Item{
         bones = false;
 
         unique = true;
+
+        defaultAction = AC_UP;
     }
     @Override
     public ArrayList<String> actions(Hero hero ) {
