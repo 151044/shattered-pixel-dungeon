@@ -54,7 +54,7 @@ public class SkeletonKey extends Key {
 				Dungeon.saveAll();
 				Game.runOnRenderThread(new Callback() {
 					@Override
-					public void call() {
+					public void call()  {
 						ShatteredPixelDungeon.scene().add(new WndSupportPrompt());
 					}
 				});

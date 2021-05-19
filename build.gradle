@@ -14,8 +14,8 @@ allprojects {
         appName = 'Aquatic Pixel Dungeon'
         appPackageName = 'com.waterypixel.aquaticpixeldungeon'
 
-        appVersionCode = 533
-        appVersionName = '0.0.1'
+        appVersionCode = 534
+        appVersionName = '0.0.2'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
